@@ -5,16 +5,14 @@ import 'dart:convert';
 class _MenuProvider {
   List<dynamic> opciones = [];
 
-  _MenuProvider() {
-    loadData();
-  }
+  Future<List<dynamic>> loadData() async {
 
-  loadData() {
-    rootBundle.loadString('data/menu_options.json').then((data) {
-      Map dataMap = json.decode(data);
-      print(dataMap['rutas']);
-      opciones = dataMap['rutas'];
-    });
+    final String data = await rootBundle.loadString('data/menu_options.json');
+
+    Map dataMap = json.decode(data);
+    opciones = dataMap['rutas'];
+
+    return opciones;
   }
 }
 
