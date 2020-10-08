@@ -16,20 +16,20 @@ class HomePageTemp extends StatelessWidget {
     );
   }
 
-  List<Widget> _createItems() {
+  // List<Widget> _createItems() {
 
-    List<Widget> listaWidget = new List<Widget>();
+  //   List<Widget> listaWidget = new List<Widget>();
 
-    for (String opcion in opciones) {
-      final tempWidget = ListTile(
-        title: Text(opcion),
-      );
+  //   for (String opcion in opciones) {
+  //     final tempWidget = ListTile(
+  //       title: Text(opcion),
+  //     );
 
-      listaWidget..add(tempWidget)..add(Divider());
-    }
+  //     listaWidget..add(tempWidget)..add(Divider());
+  //   }
 
-    return listaWidget;
-  }
+  //   return listaWidget;
+  // }
 
   List<Widget> _createItemsShort() {
     return opciones.map((opcion) {
