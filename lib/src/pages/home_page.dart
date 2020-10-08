@@ -1,4 +1,5 @@
 import 'package:componentes/src/providers/menu_provider.dart';
+import 'package:componentes/src/utils/icono_string_util.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,9 @@ class HomePage extends StatelessWidget {
       future: menuProvider.loadData(),
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-        return ListView(children: _listItems(snapshot.data),);
+        return ListView(
+          children: _listItems(snapshot.data),
+        );
       },
     );
   }
@@ -29,8 +32,11 @@ class HomePage extends StatelessWidget {
     data.forEach((opcion) {
       final ListTile widgetTemp = ListTile(
         title: Text(opcion['texto']),
-        leading: Icon(Icons.account_circle, color: Colors.blue,),
-        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
+        leading: getIcon(opcion['icon']),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          color: Colors.blue,
+        ),
         onTap: () {},
       );
       opciones..add(widgetTemp)..add(Divider());
