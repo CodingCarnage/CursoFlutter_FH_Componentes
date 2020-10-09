@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class HomePageTemp extends StatelessWidget {
-
   final List<String> opciones = ['Uno','Dos','Tres','Cuatro','Cinco'];
 
   @override
