@@ -11,7 +11,9 @@ class CardPage extends StatelessWidget {
       ),
       body: ListView(
         padding: EdgeInsets.all(10.0),
-        children: <Widget>[_cardType1()],
+        children: <Widget>[
+          _cardType1(),
+        ],
       ),
     );
   }
@@ -26,7 +28,8 @@ class CardPage extends StatelessWidget {
               color: Colors.blue,
             ),
             title: Text('Soy el titulo'),
-            subtitle: Text('Estas fgafsddgwerqwerqwe werqouiajgasd qweorijsdifjawenhr'),
+            subtitle: Text(
+                'Estas fgafsddgwerqwerqwe werqouiajgasd qweorijsdifjawenhr'),
           ),
           Row(
             children: <Widget>[
