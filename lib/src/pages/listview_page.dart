@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class ListaPage extends StatefulWidget {
@@ -10,19 +12,27 @@ class ListaPage extends StatefulWidget {
 class _ListaPageState extends State<ListaPage> {
   ScrollController _scrollController = new ScrollController();
 
-  List<int> _numberList =  new List<int>();
+  List<int> _numberList = new List<int>();
   int _ultimoItem = 0;
-
+  bool _isLoading = false;
 
   @override
-  void initState() { 
+  void dispose() {
+    super.dispose();
+
+    _scrollController.dispose();
+  }
+
+  @override
+  void initState() {
     super.initState();
-    
+
     _agregar10();
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        _agregar10();
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        _fetchData();
       }
     });
   }
@@ -33,7 +43,12 @@ class _ListaPageState extends State<ListaPage> {
       appBar: AppBar(
         title: Text('Listas'),
       ),
-      body: _crearLista(),
+      body: Stack(
+        children: <Widget>[
+          _crearLista(),
+          _crearLoading(),
+        ],
+      ),
     );
   }
 
@@ -56,8 +71,47 @@ class _ListaPageState extends State<ListaPage> {
       _ultimoItem++;
       _numberList.add(_ultimoItem);
     }
-    setState(() {
-      
-    });
+    setState(() {});
+  }
+
+  Future<Null> _fetchData() async {
+    _isLoading = true;
+    setState(() {});
+    final Duration duration = new Duration(seconds: 2);
+    return new Timer(duration, respuestaHTTP);
+  }
+
+  void respuestaHTTP() {
+    _isLoading = false;
+    _scrollController.animateTo(
+      _scrollController.position.pixels + 100,
+      duration: Duration(milliseconds: 250),
+      curve: Curves.fastOutSlowIn,
+    );
+    _agregar10();
+  }
+
+  Widget _crearLoading() {
+    if (_isLoading) {
+      return Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(bottom: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Container();
+    }
   }
 }
