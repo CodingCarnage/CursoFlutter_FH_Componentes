@@ -53,17 +53,30 @@ class _ListaPageState extends State<ListaPage> {
   }
 
   Widget _crearLista() {
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: _numberList.length,
-      itemBuilder: (BuildContext context, int index) {
-        final image = _numberList[index];
-        return FadeInImage(
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          image: NetworkImage('https://picsum.photos/id/$image/500/300'),
-        );
-      },
+    return RefreshIndicator(
+        onRefresh: obtenerPagina1,
+        child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _numberList.length,
+        itemBuilder: (BuildContext context, int index) {
+          final image = _numberList[index];
+          return FadeInImage(
+            placeholder: AssetImage('assets/jar-loading.gif'),
+            image: NetworkImage('https://picsum.photos/id/$image/500/300'),
+          );
+        },
+      ),
     );
+  }
+
+  Future<Null> obtenerPagina1() async {
+    final Duration duration = new Duration(seconds: 2);
+    new Timer(duration, () {
+      _numberList.clear();
+      _ultimoItem++;
+      _agregar10();
+    });
+    return Future.delayed(duration);
   }
 
   void _agregar10() {
