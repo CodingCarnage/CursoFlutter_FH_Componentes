@@ -13,7 +13,7 @@ class AvatarPage extends StatelessWidget {
             padding: EdgeInsets.all(5.0),
             child: CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://scontent.flov2-1.fna.fbcdn.net/v/t31.0-8/13767377_10154363872736543_672179801977189739_o.jpg?_nc_cat=1&_nc_sid=09cbfe&_nc_eui2=AeHmPabEayDp_FWvTjqoL0jYnFhAe4Bf-9OcWEB7gF_708YT9FHUL1tSu2Tvlcb5uy0btGIYrEneJRGg_fEFVpmy&_nc_ohc=XwpOPZ0Pd_IAX98snvF&_nc_ht=scontent.flov2-1.fna&oh=0f5c91d4d26aa160ff7f9ff50ee855eb&oe=5FAA7075'),
+                  'https://www.jamsadr.com/images/neutrals/person-donald-900x1080.jpg'),
               radius: 25.0,
             ),
           ),
